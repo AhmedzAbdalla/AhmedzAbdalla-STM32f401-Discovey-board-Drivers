@@ -16,11 +16,5 @@
 #define CLR_BIT(REG , POS)  	(REG&=(~(1<<POS)))
 #define Toggle_BIT(REG , POS)   (REG^=(1<<POS))
 #define READ_BIT(REG , POS) 	((REG>>POS) & BIT_MASK)
-#define BIT_MASK 1UL
-
-#define SET_BIT(REG , POS) 	 	(REG|=(1<<POS))
-#define CLR_BIT(REG , POS)  	(REG&=(~(1<<POS)))
-#define Toggle_BIT(REG , POS)   (REG^=(1<<POS))
-#define READ_BIT(REG , POS) 	((REG>>POS) & BIT_MASK)
 
 #endif /* HEADER_FILES_BIT_MATH_H_ */

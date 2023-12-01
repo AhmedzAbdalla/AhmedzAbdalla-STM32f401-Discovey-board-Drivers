@@ -3,6 +3,7 @@
  * @file           : main.c
  * @author         : Ahmed Abdalla
  * @brief          : Main program body
+ * @date		   : 16 Nov 2023 
  ******************************************************************************
  */
 
@@ -20,9 +21,6 @@
 /******************** Data Type Declarations Start **********************/
 
 /******************** Data Type Declarations End **********************/
-
-/******************** Software Interfaces Declarations Start **********************/
-/******************** Software Interfaces Declarations End **********************/
 
 int main(void)
 {
