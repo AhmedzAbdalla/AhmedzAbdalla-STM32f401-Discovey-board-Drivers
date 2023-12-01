@@ -1,0 +1,16 @@
+*.mp4
+*.o
+*.d
+*.bin
+*.elf
+*.hex
+*.lst
+*.map
+.vscode
+.metadata/
+.settings/
+Debug/
+Release/
+*.launch
+*.cproject
+*.project
