@@ -20,7 +20,7 @@
 /******************** Data Type Declarations Start **********************/
 /******************** Data Type Declarations End **********************/
 
-/******************** Software Interfaces Declarations Start **********************/
+/******************** Software Interfaces Implementation Start **********************/
 /**
  * @brief Enables a specific interrupt in the Nested Vectored Interrupt Controller (NVIC).
  * 
@@ -114,4 +114,4 @@ uint_8 NVIC_Get_Active(NVIC_IRQn_t IRQn)
 	}
 	return status;
 }
-/******************** Software Interfaces Declarations End **********************/
+/******************** Software Interfaces Implementation End **********************/

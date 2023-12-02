@@ -9,6 +9,7 @@
 
 /******************** Include Start **********************/
 #include "../Inc/MCAL/NVIC/NVIC.h"
+#include "../Inc/MCAL/SCB/SCB.h"
 /******************** Include End **********************/
 
 /******************** Macro Declarations Start **********************/
@@ -25,31 +26,33 @@
 int main(void)
 {
     /* Loop forever */
-	NVIC_Enable_IRQ(USART3);
-	NVIC_Enable_IRQ(EXTI15_10);
-	NVIC_Enable_IRQ(RTC_Alarm);
+//	NVIC_Enable_IRQ(USART3);
+//	NVIC_Enable_IRQ(EXTI15_10);
+//	NVIC_Enable_IRQ(RTC_Alarm);
+//
+//	NVIC_SetPending_IRQ(USART3);
+//	NVIC_SetPending_IRQ(EXTI15_10);
+//	NVIC_SetPending_IRQ(RTC_Alarm);
 
-	NVIC_SetPending_IRQ(USART3);
-	NVIC_SetPending_IRQ(EXTI15_10);
-	NVIC_SetPending_IRQ(RTC_Alarm);
-	for(;;);
+	SCB->AIRCR = ( 0x05FA << 16) | (5 << 8);
+	while(1);
 	return 0;
 }
 
-void USART3_IRQHandler(void)
-{
-	static uint_8 USART3_IRQHandler_flag  =0;
-	USART3_IRQHandler_flag = 1;
-}
-
-void EXTI15_10_IRQHandler(void)
-{
-	static uint_8 EXTI15_10_IRQHandler_flag  =0;
-	EXTI15_10_IRQHandler_flag = 1;
-}
-
-void RTC_Alarm_IRQHandler(void)
-{
-	static uint_8 RTC_Alarm_IRQHandler_flag  =0;
-	RTC_Alarm_IRQHandler_flag = 1;
-}
+//void USART3_IRQHandler(void)
+//{
+//	static uint_8 USART3_IRQHandler_flag  =0;
+//	USART3_IRQHandler_flag = 1;
+//}
+//
+//void EXTI15_10_IRQHandler(void)
+//{
+//	static uint_8 EXTI15_10_IRQHandler_flag  =0;
+//	EXTI15_10_IRQHandler_flag = 1;
+//}
+//
+//void RTC_Alarm_IRQHandler(void)
+//{
+//	static uint_8 RTC_Alarm_IRQHandler_flag  =0;
+//	RTC_Alarm_IRQHandler_flag = 1;
+//}
