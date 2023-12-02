@@ -34,7 +34,8 @@ int main(void)
 //	NVIC_SetPending_IRQ(EXTI15_10);
 //	NVIC_SetPending_IRQ(RTC_Alarm);
 
-	SCB->AIRCR = ( 0x05FA << 16) | (5 << 8);
+	//SCB->AIRCR = ( 0x05FA << 16) | (5 << 8);
+	SCB_Set_Priority_Group(SCB_PRIORITY_GROUP_2);
 	while(1);
 	return 0;
 }
