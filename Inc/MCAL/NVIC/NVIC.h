@@ -17,6 +17,7 @@
 /******************** Macro Declarations Start **********************/
 #define NVIC_BASE_ADDRESS   (0xE000E100UL)
 #define NVIC                ((NVIC_t *)NVIC_BASE_ADDRESS)
+#define NVIC_PRI_NITS       4UL
 /******************** Macro Declarations end **********************/
 
 /******************** Macro Function Declarations Start **********************/
@@ -35,7 +36,7 @@ typedef struct
     uint_32 Reserved_3[24];
     uint_32 volatile IABR[8];
     uint_32 Reserved_4[56];
-    uint_32 volatile IPR[60];
+    uint_8 volatile IPR[240];
     uint_32 Reserved_5[643];
     uint_32 STIR;
 }NVIC_t;
@@ -182,6 +183,26 @@ void NVIC_ClearPending_IRQ(NVIC_IRQn_t IRQn);
  * @return 1 if the interrupt is active, 0 otherwise.
  */
 uint_8 NVIC_Get_Active(NVIC_IRQn_t IRQn);
+
+/**
+ * @brief Set the priority level for the specified NVIC interrupt.
+ *
+ * This function sets the priority level for the specified NVIC (Nested Vectored Interrupt Controller) interrupt.
+ *
+ * @param IRQn: The NVIC interrupt number.
+ * @param Priority: The priority level to be set.
+ */
+void NVIC_Set_Priority(NVIC_IRQn_t IRQn , uint_8 Priority );
+
+/**
+ * @brief Get the priority level for the specified NVIC interrupt.
+ *
+ * This function retrieves the priority level for the specified NVIC interrupt.
+ *
+ * @param IRQn: The NVIC interrupt number.
+ * @return uint_8: The priority level of the specified interrupt.
+ */
+uint_8 NVIC_Get_Priority(NVIC_IRQn_t IRQn);
 /******************** Software Interfaces Declarations End **********************/
 
 

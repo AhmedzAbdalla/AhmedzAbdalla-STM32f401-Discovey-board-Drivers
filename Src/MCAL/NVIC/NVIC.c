@@ -110,8 +110,58 @@ uint_8 NVIC_Get_Active(NVIC_IRQn_t IRQn)
 	}
 	else
 	{
-		/*Nothing*/
+		status = 0xff;
 	}
 	return status;
+}
+
+/**
+ * @brief Set the priority level for the specified NVIC interrupt.
+ *
+ * This function sets the priority level for the specified NVIC (Nested Vectored Interrupt Controller) interrupt.
+ *
+ * @param IRQn: The NVIC interrupt number.
+ * @param Priority: The priority level to be set.
+ */
+void NVIC_Set_Priority(NVIC_IRQn_t IRQn, uint_8 Priority)
+{
+    // Check if the provided interrupt number is valid
+    if (IRQn >= 0)
+    {
+        // Calculate the priority value and set it in the appropriate IPR register
+        NVIC->IPR[(uint_32)IRQn] = (uint_8)((Priority << (8UL - NVIC_PRI_NITS)) & 0xFF);
+    }
+    else
+    {
+        // Invalid interrupt number, do nothing
+        /* Nothing */
+    }
+}
+
+/**
+ * @brief Get the priority level for the specified NVIC interrupt.
+ *
+ * This function retrieves the priority level for the specified NVIC interrupt.
+ *
+ * @param IRQn: The NVIC interrupt number.
+ * @return uint_8: The priority level of the specified interrupt.
+ */
+uint_8 NVIC_Get_Priority(NVIC_IRQn_t IRQn)
+{
+    uint_8 ret = 0;
+
+    // Check if the provided interrupt number is valid
+    if ((uint_32)IRQn >= 0)
+    {
+        // Retrieve the priority value from the appropriate IPR register
+        ret = NVIC->IPR[(uint_32)IRQn] >> (8UL - NVIC_PRI_NITS);
+    }
+    else
+    {
+        // Invalid interrupt number, return 0xff to indicate an error
+        ret = 0xff;
+    }
+
+    return ret;
 }
 /******************** Software Interfaces Implementation End **********************/

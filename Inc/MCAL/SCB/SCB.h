@@ -67,6 +67,13 @@ typedef struct
 /******************** Data Type Declarations End **********************/
 
 /******************** Software Interfaces Declarations Start **********************/
+/**
+ * @brief Set the priority grouping for the System Control Block (SCB).
+ *
+ * This function sets the priority grouping for the SCB (System Control Block).
+ *
+ * @param Priority_Group: The priority grouping to be set.
+ */
 void SCB_Set_Priority_Group(uint_32 Priority_Group );
 
 /******************** Software Interfaces Declarations End **********************/
