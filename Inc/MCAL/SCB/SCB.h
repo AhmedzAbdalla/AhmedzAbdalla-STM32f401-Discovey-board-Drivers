@@ -6,8 +6,8 @@
  * @date		   : 02 Dec 2023 
  ******************************************************************************
  */
-#ifndef MCAL_ٍSCB_SCB_H_
-#define MCAL_ٍSCB_SCB_H_
+#ifndef MCAL_ٍSCB_SCB_H
+#define MCAL_ٍSCB_SCB_H
 
 /******************** Include Start **********************/
 #include "../../LIB/STD_Types.h"
