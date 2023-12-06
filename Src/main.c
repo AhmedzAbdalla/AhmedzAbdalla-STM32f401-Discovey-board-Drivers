@@ -8,8 +8,11 @@
  */
 
 /******************** Include Start **********************/
+#include "../Inc/LIB/STD_Types.h"
+#include "../Inc/LIB/BIT_MATH.h"
 #include "../Inc/MCAL/NVIC/NVIC.h"
 #include "../Inc/MCAL/SCB/SCB.h"
+#include "../Inc/MCAL/RCC/RCC.h"
 /******************** Include End **********************/
 
 /******************** Macro Declarations Start **********************/
@@ -33,7 +36,8 @@ int main(void)
 //	NVIC_SetPending_IRQ(USART3);
 //	NVIC_SetPending_IRQ(EXTI15_10);
 //	NVIC_SetPending_IRQ(RTC_Alarm);
-
+	SET_BIT((RCC->RCC_AHB1ENR_Reg), (CLOCK_GPIOC % 32UL));
+	//RCC->RCC_AHB1ENR_Reg =
 	//SCB->AIRCR = ( 0x05FA << 16) | (5 << 8);
 	SCB_Set_Priority_Group(SCB_PRIORITY_GROUP_2);
 	NVIC_Set_Priority(USART3 , 4);
