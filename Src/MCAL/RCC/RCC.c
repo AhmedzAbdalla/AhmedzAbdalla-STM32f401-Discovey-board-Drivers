@@ -23,8 +23,9 @@
 /******************** Data Type Declarations End   **********************/
 
 /******************** Software Interfaces Declarations Start **********************/
-void RCC_void_RCC_Periphral_Clk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
+STD_Return_t RCC_void_RCC_Periphral_Clk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
 {
+    STD_Return_t Ret = Not_OK;
     if((Bus_ID >4) || (Bus_ID < 0))
     {
         /*Nothing*/
@@ -52,11 +53,14 @@ void RCC_void_RCC_Periphral_Clk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
         default:
             break;
         }
+        Ret = OK;
     }
+    return Ret;
 }
 
-void RCC_void_RCC_Periphral_Clk_RST(uint_8 Periphral_ID, uint_8 Bus_ID)
+STD_Return_t RCC_void_RCC_Periphral_Clk_RST(uint_8 Periphral_ID, uint_8 Bus_ID)
 {
+    STD_Return_t Ret = Not_OK;
     if(Bus_ID >4 || Bus_ID < 0)
     {
         /*Nothing*/
@@ -103,10 +107,13 @@ void RCC_void_RCC_Periphral_Clk_RST(uint_8 Periphral_ID, uint_8 Bus_ID)
         default:
             break;
         }
+        Ret = OK;
     }
+    return Ret;
 }
-void RCC_void_RCC_Periphral_LPClk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
+STD_Return_t RCC_void_RCC_Periphral_LPClk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
 {
+    STD_Return_t Ret = Not_OK;
     if(Bus_ID > 4 || Bus_ID < 0)
     {
         /*Nothing*/
@@ -134,7 +141,26 @@ void RCC_void_RCC_Periphral_LPClk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
         default:
             break;
         }
+        Ret = OK;
     }
+    return Ret;
+}
+
+STD_Return_t RCC_void_RCC_Set_Bus_CLK(const BUS_CLK *const Config_BUS_CLK)
+{
+    uint_32 Ret = Not_OK;
+    if(NULL == Config_BUS_CLK)
+    {
+        /*Nothing*/
+    }
+    else
+    {
+        MODIFY_REG((RCC->RCC_CFGR_Reg) , HPRE_BIT_MSK ,(Config_BUS_CLK->AHB_DIV_FACT) );
+        MODIFY_REG((RCC->RCC_CFGR_Reg) , PPRE1_BIT_MSK ,(Config_BUS_CLK->APB1_DIV_FACT) );
+        MODIFY_REG((RCC->RCC_CFGR_Reg) , PPRE2_BIT_MSK ,(Config_BUS_CLK->APB2_DIV_FACT) );
+        Ret = OK;
+    }
+    return Ret;
 }
 
 /******************** Software Interfaces Declarations End   **********************/

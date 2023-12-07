@@ -28,6 +28,10 @@
 
 int main(void)
 {
+	BUS_CLK my_config = {.AHB_DIV_FACT = HPRE_DIV_16,
+						 .APB1_DIV_FACT = PPRE1_DIV_4,
+						 .APB2_DIV_FACT = PPRE2_DIV_8
+						 };
     /* Loop forever */
 	NVIC_Enable_IRQ(USART3);
 	NVIC_Enable_IRQ(EXTI15_10);
@@ -49,6 +53,8 @@ int main(void)
 	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_HASH  , AHB2);
 	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_RNG   , AHB2);
 	RCC_void_RCC_Periphral_Clk_En( AHB3_CLK_FSMC  , AHB3);
+
+	RCC_void_RCC_Set_Bus_CLK(&my_config);
 	//NVIC_SetPending_IRQ(USART3);
 	while(1);
 	return 0;

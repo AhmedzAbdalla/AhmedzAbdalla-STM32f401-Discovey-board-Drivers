@@ -102,6 +102,40 @@
 #define APB2_CLK_TIM10                        49UL
 #define APB2_CLK_TIM11                        50UL
 
+/*Prescalar values for AHB clock source*/
+#define HPRE_BIT_POS    4UL
+#define HPRE_BIT_MSK    (0xFUL << HPRE_BIT_POS)
+
+#define HPRE_DIV_1        ((uint_32) 0x00) /*system clock not divided*/
+#define HPRE_DIV_2        ((uint_32) 0x80) /*system clock divided by 2*/
+#define HPRE_DIV_4        ((uint_32) 0x90) /*system clock divided by 4*/
+#define HPRE_DIV_8        ((uint_32) 0xA0) /*system clock divided by 8*/
+#define HPRE_DIV_16       ((uint_32) 0xB0) /*system clock divided by 16*/
+#define HPRE_DIV_64       ((uint_32) 0xC0) /*system clock divided by 64*/
+#define HPRE_DIV_128      ((uint_32) 0xD0) /*system clock divided by 128*/
+#define HPRE_DIV_256      ((uint_32) 0xE0) /*system clock divided by 256*/
+#define HPRE_DIV_512      ((uint_32) 0xF0) /*system clock divided by 512*/
+
+/*Prescalar values for APB1 clock source*/
+#define PPRE1_BIT_POS    10UL
+#define PPRE1_BIT_MSK    (0x7UL << PPRE1_BIT_POS)
+
+#define PPRE1_DIV_1        ((uint_32) 0x0)    /*system clock not divided*/
+#define PPRE1_DIV_2        ((uint_32) 0x1000) /*system clock divided by 2*/
+#define PPRE1_DIV_4        ((uint_32) 0x1400) /*system clock divided by 4*/
+#define PPRE1_DIV_8        ((uint_32) 0x1800) /*system clock divided by 8*/
+#define PPRE1_DIV_16       ((uint_32) 0x1C00) /*system clock divided by 16*/
+
+
+/*Prescalar values for APB2 clock source*/
+#define PPRE2_BIT_POS    13UL
+#define PPRE2_BIT_MSK    (0x7UL << PPRE2_BIT_POS)
+
+#define PPRE2_DIV_1        ((uint_32) 0x0)    /*system clock not divided*/
+#define PPRE2_DIV_2        ((uint_32) (0x1000 << 3)) /*system clock divided by 2*/
+#define PPRE2_DIV_4        ((uint_32) (0x1400 << 3)) /*system clock divided by 4*/
+#define PPRE2_DIV_8        ((uint_32) (0x1800 << 3)) /*system clock divided by 8*/
+#define PPRE2_DIV_16       ((uint_32) (0x1C00 << 3)) /*system clock divided by 16*/
 /******************** Macro Declarations End   **********************/
 /******************** Macro Function Declarations Start **********************/
 /******************** Macro Function Declarations End   **********************/
@@ -141,13 +175,23 @@ typedef struct
     volatile uint_32 RCC_PLLI2SCFGR_Reg;
 
 }RCC_t;
+
+
+typedef struct
+{
+    uint_32 AHB_DIV_FACT;
+    uint_32 APB1_DIV_FACT;
+    uint_32 APB2_DIV_FACT;
+}BUS_CLK;
+
 /******************** Data Type Declarations End   **********************/
 
 /******************** Software Interfaces Declarations Start **********************/
-void RCC_void_RCC_Init_CLK(const )
-void RCC_void_RCC_Periphral_Clk_En(uint_8 Periphral_ID, uint_8 Bus_ID);
-void RCC_void_RCC_Periphral_Clk_RST(uint_8 Periphral_ID, uint_8 Bus_ID);
-void RCC_void_RCC_Periphral_LPClk_En(uint_8 Periphral_ID, uint_8 Bus_ID);
+STD_Return_t RCC_void_RCC_Init_CLK(void );
+STD_Return_t RCC_void_RCC_Periphral_Clk_En( const uint_8 Periphral_ID, const uint_8 Bus_ID);
+STD_Return_t RCC_void_RCC_Periphral_Clk_RST(const uint_8 Periphral_ID, const uint_8 Bus_ID);
+STD_Return_t RCC_void_RCC_Periphral_LPClk_En(const uint_8 Periphral_ID, const uint_8 Bus_ID);
+STD_Return_t RCC_void_RCC_Set_Bus_CLK(const BUS_CLK *const Config_BUS_CLK);
 /******************** Software Interfaces Declarations End   **********************/
 
 
