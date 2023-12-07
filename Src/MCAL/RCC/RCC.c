@@ -23,7 +23,17 @@
 /******************** Data Type Declarations End   **********************/
 
 /******************** Software Interfaces Declarations Start **********************/
-STD_Return_t RCC_void_RCC_Periphral_Clk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
+/**
+ * @brief Enable the clock for a specific peripheral on a specified bus.
+ *
+ * This function enables the clock for a specific peripheral on the specified bus.
+ *
+ * @param[in] Periphral_ID Identifier of the peripheral to enable the clock for.
+ * @param[in] Bus_ID Identifier of the bus on which the peripheral is connected.
+ *
+ * @return STD_Return_t Status of the operation.
+ */
+STD_Return_t RCC_void_RCC_Periphral_Clk_En(const uint_8 Periphral_ID, const uint_8 Bus_ID)
 {
     STD_Return_t Ret = Not_OK;
     if((Bus_ID >4) || (Bus_ID < 0))
@@ -58,7 +68,17 @@ STD_Return_t RCC_void_RCC_Periphral_Clk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
     return Ret;
 }
 
-STD_Return_t RCC_void_RCC_Periphral_Clk_RST(uint_8 Periphral_ID, uint_8 Bus_ID)
+/**
+ * @brief Reset the clock for a specific peripheral on a specified bus.
+ *
+ * This function resets the clock for a specific peripheral on the specified bus.
+ *
+ * @param[in] Periphral_ID Identifier of the peripheral to reset the clock for.
+ * @param[in] Bus_ID Identifier of the bus on which the peripheral is connected.
+ *
+ * @return STD_Return_t Status of the operation.
+ */
+STD_Return_t RCC_void_RCC_Periphral_Clk_RST(const uint_8 Periphral_ID, const uint_8 Bus_ID)
 {
     STD_Return_t Ret = Not_OK;
     if(Bus_ID >4 || Bus_ID < 0)
@@ -111,7 +131,18 @@ STD_Return_t RCC_void_RCC_Periphral_Clk_RST(uint_8 Periphral_ID, uint_8 Bus_ID)
     }
     return Ret;
 }
-STD_Return_t RCC_void_RCC_Periphral_LPClk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
+
+/**
+ * @brief Enable the low-power clock for a specific peripheral on a specified bus.
+ *
+ * This function enables the low-power clock for a specific peripheral on the specified bus.
+ *
+ * @param[in] Periphral_ID Identifier of the peripheral to enable the low-power clock for.
+ * @param[in] Bus_ID Identifier of the bus on which the peripheral is connected.
+ *
+ * @return STD_Return_t Status of the operation.
+ */
+STD_Return_t RCC_void_RCC_Periphral_LPClk_En(const uint_8 Periphral_ID, const uint_8 Bus_ID)
 {
     STD_Return_t Ret = Not_OK;
     if(Bus_ID > 4 || Bus_ID < 0)
@@ -146,6 +177,15 @@ STD_Return_t RCC_void_RCC_Periphral_LPClk_En(uint_8 Periphral_ID, uint_8 Bus_ID)
     return Ret;
 }
 
+/**
+ * @brief Set the clock configuration for different buses.
+ *
+ * This function sets the clock configuration for different buses using the provided configuration structure.
+ *
+ * @param[in] Config_BUS_CLK Pointer to the configuration structure holding bus clock division factors.
+ *
+ * @return STD_Return_t Status of the operation.
+ */
 STD_Return_t RCC_void_RCC_Set_Bus_CLK(const BUS_CLK *const Config_BUS_CLK)
 {
     uint_32 Ret = Not_OK;
