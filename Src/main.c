@@ -36,14 +36,20 @@ int main(void)
 //	NVIC_SetPending_IRQ(USART3);
 //	NVIC_SetPending_IRQ(EXTI15_10);
 //	NVIC_SetPending_IRQ(RTC_Alarm);
-	SET_BIT((RCC->RCC_AHB1ENR_Reg), (CLOCK_GPIOC % 32UL));
+	//SET_BIT((RCC->RCC_AHB1ENR_Reg), (CLOCK_GPIOC % 32UL));
 	//RCC->RCC_AHB1ENR_Reg =
 	//SCB->AIRCR = ( 0x05FA << 16) | (5 << 8);
 	SCB_Set_Priority_Group(SCB_PRIORITY_GROUP_2);
 	NVIC_Set_Priority(USART3 , 4);
 	NVIC_Set_Priority(EXTI15_10 , 0);
-
-	NVIC_SetPending_IRQ(USART3);
+	RCC_void_RCC_Periphral_Clk_En(AHB1_CLK_GPIOG  , AHB1);
+	RCC_void_RCC_Periphral_Clk_En( AHB1_CLK_DMA1  , AHB1);
+	RCC_void_RCC_Periphral_Clk_En( AHB1_CLK_OTGHS , AHB1);
+	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_DCMI  , AHB2);
+	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_HASH  , AHB2);
+	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_RNG   , AHB2);
+	RCC_void_RCC_Periphral_Clk_En( AHB3_CLK_FSMC  , AHB3);
+	//NVIC_SetPending_IRQ(USART3);
 	while(1);
 	return 0;
 }
