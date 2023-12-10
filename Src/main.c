@@ -13,6 +13,7 @@
 #include "../Inc/MCAL/NVIC/NVIC.h"
 #include "../Inc/MCAL/SCB/SCB.h"
 #include "../Inc/MCAL/RCC/RCC.h"
+#include "../Inc/MCAL/SYS_TICK/STK.h"
 /******************** Include End **********************/
 
 /******************** Macro Declarations Start **********************/
@@ -25,7 +26,12 @@
 /******************** Data Type Declarations Start **********************/
 
 /******************** Data Type Declarations End **********************/
+	 static uint_32 counter = 0;
+void test(void)
+ {
 
+	 counter++;
+ }
 int main(void)
 {
 	BUS_CLK my_config = {.AHB_DIV_FACT = HPRE_DIV_16,
@@ -55,6 +61,9 @@ int main(void)
 	RCC_void_RCC_Periphral_Clk_En( AHB3_CLK_FSMC  , AHB3);
 
 	RCC_void_RCC_Set_Bus_CLK(&my_config);
+
+	STK_Init();
+	STK_Set_Interval_Periodic(1000000 , &test);
 	//NVIC_SetPending_IRQ(USART3);
 	while(1);
 	return 0;
