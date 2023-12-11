@@ -100,7 +100,7 @@ STD_Return_t STK_Set_Busy_Wait(uint_32 Copy_u32Ticks)
         /* Start Timer */
         SET_BIT((STK->STK_CTRL_REG) , CTRL_ENABLE);
         /* Wait till flag is raised */
-        while (READ_BIT((STK->STK_CTRL_REG) , CTRL_COUNTFLAG));
+        while (READ_BIT((STK->STK_CTRL_REG) , CTRL_COUNTFLAG) == 0);
         /* Stop Timer */
         CLR_BIT((STK->STK_CTRL_REG) , CTRL_ENABLE);
         STK->STK_LOAD_REG = 0;

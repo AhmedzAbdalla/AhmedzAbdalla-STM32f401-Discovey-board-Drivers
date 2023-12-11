@@ -54,6 +54,8 @@ int main(void)
 	NVIC_Set_Priority(USART3 , 4);
 	NVIC_Set_Priority(EXTI15_10 , 0);
 	RCC_void_RCC_Periphral_Clk_En(AHB1_CLK_GPIOA  , AHB1);
+	RCC_void_RCC_Periphral_Clk_En(AHB1_CLK_GPIOB  , AHB1);
+	RCC_void_RCC_Periphral_Clk_En(AHB1_CLK_GPIOD  , AHB1);
 //	RCC_void_RCC_Periphral_Clk_En( AHB1_CLK_DMA1  , AHB1);
 //	RCC_void_RCC_Periphral_Clk_En( AHB1_CLK_OTGHS , AHB1);
 //	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_DCMI  , AHB2);
@@ -63,12 +65,53 @@ int main(void)
 
 	RCC_void_RCC_Set_Bus_CLK(&my_config);
 
-//	STK_Init();
+	STK_Init();
 //	STK_Set_Interval_Periodic(1000000 , &test);
 
-	GPIO_void_Set_Pin_Mode(PA_4 , OUTPUT);
+	GPIO_void_Set_Pin_Mode(PD_12 , OUTPUT);
+	GPIO_void_Set_Pin_Type(PD_12 , push_pull);
+	GPIO_void_Set_Pin_Speed(PD_12 , High_speed);
+
+	GPIO_void_Set_Pin_Mode(PD_13 , OUTPUT);
+	GPIO_void_Set_Pin_Type(PD_13 , push_pull);
+	GPIO_void_Set_Pin_Speed(PD_13 , High_speed);
+
+	GPIO_void_Set_Pin_Mode(PD_14 , OUTPUT);
+	GPIO_void_Set_Pin_Type(PD_14 , push_pull);
+	GPIO_void_Set_Pin_Speed(PD_14 , High_speed);
+
+	GPIO_void_Set_Pin_Mode(PD_15 , OUTPUT);
+	GPIO_void_Set_Pin_Type(PD_15 , push_pull);
+	GPIO_void_Set_Pin_Speed(PD_15 , High_speed);
+
+	uint_8 btn_status = 0;
+	GPIO_void_Set_Pin_Mode(PB_1 , INPUT);
+	GPIO_void_Set_Pin_Pull_State(PB_1 , PULL_UP);
+	
+
+	GPIO_void_Set_Pin_Value_Atomic(PD_12 , SET);
+	GPIO_void_Set_Pin_Value_Atomic(PD_13 , SET);
+	GPIO_void_Set_Pin_Value_Atomic(PD_14 , SET);
+	GPIO_void_Set_Pin_Value_Atomic(PD_15 , SET);
 	//NVIC_SetPending_IRQ(USART3);
-	while(1);
+	while(1)
+	{
+		GPIO_u8_Set_Pin_Get_Value(PB_1 , &btn_status);
+		if(btn_status == 0)
+		{
+			GPIO_void_Set_Pin_Value_Atomic(PD_12 , RST);
+			GPIO_void_Set_Pin_Value_Atomic(PD_13 , RST);
+			GPIO_void_Set_Pin_Value_Atomic(PD_14 , RST);
+			GPIO_void_Set_Pin_Value_Atomic(PD_15 , RST);
+		}
+		else
+		{
+			GPIO_void_Set_Pin_Value_Atomic(PD_12 , SET);
+			GPIO_void_Set_Pin_Value_Atomic(PD_13 , SET);
+			GPIO_void_Set_Pin_Value_Atomic(PD_14 , SET);
+			GPIO_void_Set_Pin_Value_Atomic(PD_15 , SET);
+		}
+	}
 	return 0;
 }
 

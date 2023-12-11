@@ -22,6 +22,21 @@
 #define push_pull       0UL
 #define open_drain      1UL
 
+//I/O output pins speed
+#define Low_speed       0UL
+#define Medium_speed    1UL
+#define High_speed      2UL
+#define Very_high_speed 3UL
+
+//I/O Input pins State
+#define FLOATING        0UL // No pull-up, pull-down
+#define PULL_UP         1UL
+#define PULL_DOWN       2UL
+
+// I/O output pins Sense level
+#define SET             1UL
+#define RST             0UL
+
 /******************** Macro Declarations End   **********************/
 /******************** Macro Function Declarations Start **********************/
 /******************** Macro Function Declarations End   **********************/
@@ -65,6 +80,11 @@ typedef enum
 /******************** Data Type Declarations End   **********************/
 
 /******************** Software Interfaces Declarations Start **********************/
-STD_Return_t GPIO_void_Set_Pin_Mode(PIN_ID_t Copy_Pin_ID, uint_8 Copy_mode);
-STD_Return_t GPIO_void_Set_Pin_Type(PIN_ID_t Copy_Pin_ID, uint_8 Copy_u8_Type );
+STD_Return_t GPIO_void_Set_Pin_Mode(const PIN_ID_t Copy_Pin_ID, const uint_8 Copy_mode);
+STD_Return_t GPIO_void_Set_Pin_Type(const PIN_ID_t Copy_Pin_ID, const uint_8 Copy_u8_Type );
+STD_Return_t GPIO_void_Set_Pin_Speed(const PIN_ID_t Copy_Pin_ID, const uint_8 Copy_Speed );
+STD_Return_t GPIO_void_Set_Pin_Pull_State(const PIN_ID_t Copy_Pin_ID, const uint_8 Copy_Pull_State );
+STD_Return_t GPIO_void_Set_Pin_Value_Non_Atomic(const PIN_ID_t Copy_Pin_ID, const uint_8 Copy_Sense_level );
+STD_Return_t GPIO_void_Set_Pin_Value_Atomic(const PIN_ID_t Copy_Pin_ID, const uint_8 Copy_Sense_level );
+STD_Return_t GPIO_u8_Set_Pin_Get_Value(const PIN_ID_t Copy_Pin_ID, uint_8 *const Ref_Data );
 /******************** Software Interfaces Declarations End   **********************/
