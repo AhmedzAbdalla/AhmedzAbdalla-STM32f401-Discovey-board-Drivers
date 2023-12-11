@@ -59,7 +59,7 @@
  * @param[in] CLR_MSK The bit mask to clear bits.
  * @param[in] SET_MSK The bit mask to set bits.
  */
-#define MODIFY_REG(REG, CLR_MSK, SET_MSK) \
-    WRITE_REG((REG), (((READ_REG(REG)) & (~(CLR_MSK))) | (SET_MSK)))
+#define MODIFY_REG(REG, CLR_MSK, SET_MSK) WRITE_REG((REG), (((READ_REG(REG)) & (~(CLR_MSK))) | (SET_MSK)))
+    
 
 #endif /* HEADER_FILES_BIT_MATH_H_ */

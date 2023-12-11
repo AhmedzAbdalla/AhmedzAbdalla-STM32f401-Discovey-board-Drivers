@@ -14,6 +14,7 @@
 #include "../Inc/MCAL/SCB/SCB.h"
 #include "../Inc/MCAL/RCC/RCC.h"
 #include "../Inc/MCAL/SYS_TICK/STK.h"
+#include "../Inc/MCAL/GPIO/GPIO.h"
 /******************** Include End **********************/
 
 /******************** Macro Declarations Start **********************/
@@ -52,18 +53,20 @@ int main(void)
 	SCB_Set_Priority_Group(SCB_PRIORITY_GROUP_2);
 	NVIC_Set_Priority(USART3 , 4);
 	NVIC_Set_Priority(EXTI15_10 , 0);
-	RCC_void_RCC_Periphral_Clk_En(AHB1_CLK_GPIOG  , AHB1);
-	RCC_void_RCC_Periphral_Clk_En( AHB1_CLK_DMA1  , AHB1);
-	RCC_void_RCC_Periphral_Clk_En( AHB1_CLK_OTGHS , AHB1);
-	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_DCMI  , AHB2);
-	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_HASH  , AHB2);
-	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_RNG   , AHB2);
-	RCC_void_RCC_Periphral_Clk_En( AHB3_CLK_FSMC  , AHB3);
+	RCC_void_RCC_Periphral_Clk_En(AHB1_CLK_GPIOA  , AHB1);
+//	RCC_void_RCC_Periphral_Clk_En( AHB1_CLK_DMA1  , AHB1);
+//	RCC_void_RCC_Periphral_Clk_En( AHB1_CLK_OTGHS , AHB1);
+//	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_DCMI  , AHB2);
+//	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_HASH  , AHB2);
+//	RCC_void_RCC_Periphral_Clk_En( AHB2_CLK_RNG   , AHB2);
+//	RCC_void_RCC_Periphral_Clk_En( AHB3_CLK_FSMC  , AHB3);
 
 	RCC_void_RCC_Set_Bus_CLK(&my_config);
 
-	STK_Init();
-	STK_Set_Interval_Periodic(1000000 , &test);
+//	STK_Init();
+//	STK_Set_Interval_Periodic(1000000 , &test);
+
+	GPIO_void_Set_Pin_Mode(PA_4 , OUTPUT);
 	//NVIC_SetPending_IRQ(USART3);
 	while(1);
 	return 0;
